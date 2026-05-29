@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(boy.jpg);
+  background-size: cover;
+  background-position: center;
+  font-family: 'Century Gothic', sans-serif;
+  color: #fff;
+  background-repeat: no-repeat;
+  background-attachment:fixed
+}
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.8rem 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  border-radius: 20px;
+  margin-top: 10px;
+  background: transparent;
+  backdrop-filter: blur(30px);
+}
+
+.navbar a {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 25px;
+  font-family:'poppins';
+}
+.navbar a:hover{
+  content: '';
+  color: orange;
+  transition: 1s;
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  background-color: white;
+  padding: 6px;
+
+
+}
+
+.para{
+  color: white;
+  font-size: 15px;
+  font-weight: 900;
+  font-family:"Playwrite GB S", cursive;
+  text-align:end;
+  position: fixed;
+  top: 400px;       /* below the tips text */
+  right: 40px;
+  z-index: 99;
+}
+.para::selection{
+  color: red;
+  font-size: 30px;
+  background-color: black;
+
+}
+.para:hover{
+  content: '';
+  color: rgb(255, 123, 0);
+  font-size: 20px;
+  transition: 1s ease-in-out;
+  line-height: 2;
+}
+.tips{
+  font-size: 80px;
+  font-weight: bold;
+font-family: "Edu NSW ACT Cursive", cursive;
+  text-align: right;
+  position: fixed;
+  top: 180px;        /* just below the header */
+  right: 60px;
+  z-index: 99;
+}
+.tips:hover{
+  content: '';
+  color: orange;  
+  transition: 0.5s ;
+
+}
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+  margin: 0 auto 4rem;
+  margin-top: 10%;
+}
+@keyframes appear{
+  from { opacity: 0;
+    scale: 0.5}
+  to { opacity: 1;
+    scale: 1;
+    }
+}
+#card1,
+#card2,
+#card3 {
+  display: none;
+}
+.book-scene {
+  perspective: 1200px;
+  width: 100%;
+  height: 400px;
+   animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 50%;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.pages {
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+  background: #f5f0e8;
+  color: #111;
+  z-index: 1;
+}
+
+.pages h2 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  color: #222;
+}
+
+.pages p {
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Close button on pages side */
+.close-label {
+  display: inline-block;
+  margin-top: auto;
+  padding: 6px 18px;
+  border: 1.5px solid #aaa;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #666;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.close-label:hover {
+  background: #e0dbd0;
+}
+
+/* ── Cover (flips open) ── */
+.cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  z-index: 2;
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.4);
+  border-left: 12px solid rgba(0, 0, 0, 0.25);
+}
+
+/* Shine strip on cover */
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Open label fills the cover */
+.open-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.open-label .num {
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.25);
+  line-height: 1;
+}
+
+.open-label h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.open-label .hint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Cover colours per card ── */
+.book-scene:nth-child(1) .cover {
+  background: linear-gradient(135deg, #1f1b12, #ff9e01);
+}
+
+.book-scene:nth-child(2) .cover {
+  background: linear-gradient(135deg,#1f1b12, #0a7d3e);
+}
+
+.book-scene:nth-child(3) .cover {
+  background: linear-gradient(135deg, #1f1b12, #ffeb3b);
+}
+
+/* ── Open state: cover swings back when checkbox is checked ── */
+#card1:checked ~ .container .book-scene:nth-child(1) .cover {
+  transform: rotateY(-170deg);
+}
+
+#card2:checked ~ .container .book-scene:nth-child(2) .cover {
+  transform: rotateY(-170deg);
+}
+
+#card3:checked ~ .container .book-scene:nth-child(3) .cover {
+  transform: rotateY(-170deg);
+}
+
+/* ── Media Queries ── */
+@media (max-width: 768px) {
+  .header { padding: 0.5rem 5%; }
+  .navbar a { margin-left: 15px; font-size: 1rem; }
+  #tips { font-size: 18px; margin-top: 300px; }
+  .book-scene { height: 380px; }
+}
+
+@media (max-width: 480px) {
+  .navbar { display: flex; flex-direction: column; align-items: flex-start; padding: 10px; }
+  .navbar a { margin: 10px 0; }
+  .header { flex-direction: column; align-items: flex-start; }
+  .book-scene { height: 350px; }
+  #tips { font-size: 16px; margin-top: 250px; }
+}
