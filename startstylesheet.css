@@ -12,76 +12,68 @@ body {
   color: #fff;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  min-height: 100vh;
 }
 
 .header {
   position: sticky;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 1rem 5%;
+  padding: 0.8rem 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  margin-top: 10px;
+  background: transparent;
   backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-}
-
-.navbar {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .navbar a {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: bold;
   color: #fff;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: all 0.3s;
+  margin-left: 25px;
+  font-family: 'poppins';
 }
 
 .navbar a:hover {
   color: orange;
+  transition: 1s;
   border: 1px solid whitesmoke;
-  background-color: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  background: transparent;
 }
 
 .tips {
   color: white;
   font-size: 1.5rem;
   text-align: center;
-  margin: 30px auto 10px auto;
+  margin-top: 30px;
 }
 
 .para {
   color: white;
-  font-size: 1.05rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
   text-align: center;
-  max-width: 650px;
-  margin: 0 auto 40px auto;
-  padding: 0 20px;
+  margin-top: 20px;
+  padding: 0 15px;
 }
 
-/* Card Presentation Grid */
+/* Flex-Grid Container allows cards to fit nicely on smaller workspaces */
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  padding: 0 20px 50px 20px;
 }
 
 .book-scene {
-  width: 100%;
+  width: 280px;
   height: 400px;
   perspective: 1000px;
 }
@@ -113,6 +105,23 @@ body {
   justify-content: space-between;
 }
 
+.pages h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.pages p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.close-label {
+  align-self: flex-end;
+  color: #ff9e01;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .cover {
   transform-origin: left center;
   transition: transform 0.6s ease-in-out;
@@ -124,21 +133,39 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
 }
 
-/* Color definitions per index assignment */
+.open-label .num {
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.25);
+  line-height: 1;
+}
+
+.open-label h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.open-label .hint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Cover Colors */
 .book-scene:nth-child(1) .cover { background: linear-gradient(135deg, #1f1b12, #ff9e01); }
-.book-scene:nth-child(2) .cover { background: linear-gradient(135deg, #1f1b12, #0a7d3e); }
+.book-scene:nth-child(2) .cover { background: linear-gradient(135deg,#1f1b12, #0a7d3e); }
 .book-scene:nth-child(3) .cover { background: linear-gradient(135deg, #1f1b12, #ffeb3b); }
 
-#card1:checked ~ .container .book-scene:nth-child(1) .cover { transform: rotateY(-160deg); }
-#card2:checked ~ .container .book-scene:nth-child(2) .cover { transform: rotateY(-160deg); }
+/* Interaction Targets Rules */
+#card1:checked ~ .container .book-scene:nth-child(1) .cover { transform: rotateY(-170deg); }
+#card2:checked ~ .container .book-scene:nth-child(2) .cover { transform: rotateY(-170deg); }
+#card3:checked ~ .container .book-scene:nth-child(3) .cover { transform: rotateY(-170deg); }
 
-@media (max-width: 480px) {
-  .navbar a {
-    font-size: 0.95rem;
-  }
+@media (max-width: 600px) {
+  .header { padding: 0.8rem 5%; }
+  .navbar a { margin-left: 12px; font-size: 1rem; }
 }
