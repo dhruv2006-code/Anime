@@ -11,7 +11,6 @@ body {
   background-attachment: fixed;
   font-family: Bahnschrift, sans-serif;
   overflow-x: hidden;
-  min-height: 100vh;
 }
 
 a {
@@ -24,8 +23,8 @@ a {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 0.8rem 5%;
-  background: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 10%;
+  background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   display: flex;
@@ -43,7 +42,7 @@ a {
 .navbar {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .navbar a {
@@ -58,24 +57,35 @@ a {
 
 .navbar a:hover {
   border-color: rgba(220, 30, 30, 0.75);
-  background: rgba(255, 115, 0, 0.71);
+  background: rgba(255, 115, 0, 0.71) 20%;
   box-shadow: 0 0 20px rgba(220, 30, 30, 0.3);
   transform: translateY(-2px);
+  color: #fff;
+}
+
+.navbar a:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
 }
 
 .navbar a.nav-explore {
-  background: rgba(220, 30, 30, 0.25);
+  background: rgba(220, 30, 30, 0.15);
   border-color: rgba(220, 30, 30, 0.55);
+  animation: navPulse 2.5s ease-in-out infinite;
 }
 
-/* Typography Fluid Containers */
+@keyframes navPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 30, 30, 0); }
+  50% { box-shadow: 0 0 14px 3px rgba(220, 30, 30, 0.28); }
+}
+
+/* Original text styles with responsive sizing fallback */
 .strong, .strong2 {
-  font-size: clamp(3rem, 12vw, 8rem);
-  font-weight: 900;
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 700;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 150px;
   color: #fff;
-  text-transform: uppercase;
 }
 
 .strong2 {
@@ -85,45 +95,38 @@ a {
 .arrow {
   display: block;
   margin: 20px auto;
-  background: rgba(220, 30, 30, 0.8);
+  background: none;
   border: none;
   color: white;
-  padding: 15px 35px;
-  font-size: 2rem;
-  border-radius: 50px;
+  font-size: 2.5rem;
   cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.arrow:hover {
-  transform: scale(1.1);
 }
 
 #intro {
-  font-size: clamp(1rem, 3.5vw, 1.8rem);
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
   text-align: center;
-  margin: 30px auto;
-  max-width: 90%;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 300;
+  margin-top: 20px;
+  color: #fff;
 }
 
-/* Tablet & Mobile Screens Breakpoint */
+/* Mobile Breakpoint for Navigation Stack Only */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    padding: 15px;
-    gap: 15px;
-    position: static;
+    padding: 0.8rem 5%;
   }
-  
-  .navbar {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+  .navbar a {
+    padding: 6px 12px;
+    font-size: 0.9rem;
   }
+}
 
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
   .strong {
-    margin-top: 40px;
+    margin-top: 100px;
   }
 }
