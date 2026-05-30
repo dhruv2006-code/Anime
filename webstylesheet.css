@@ -13,10 +13,13 @@ body {
   overflow-x: hidden;
 }
 
+
 a {
   text-decoration: none;
   color: white;
 }
+
+
 
 .header {
   position: fixed;
@@ -43,16 +46,43 @@ a {
   display: flex;
   align-items: center;
   gap: 10px;
+  border-radius: 20px;
 }
 
 .navbar a {
   font-size: 1rem;
-  font-weight: 600;
   color: #fff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  padding: 9px 24px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  transition: color 0.35s,
+              border-color 0.35s,
+              background 0.35s,
+              box-shadow 0.35s,
+              transform 0.2s;
+}
+
+.navbar a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,transparent 0%,
+    rgba(255, 115, 0, 0.71) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+  border-radius: 50px;
+}
+
+.navbar a:hover::before {
+  transform: translateX(100%);
 }
 
 .navbar a:hover {
@@ -75,58 +105,119 @@ a {
 }
 
 @keyframes navPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 30, 30, 0); }
-  50% { box-shadow: 0 0 14px 3px rgba(220, 30, 30, 0.28); }
+  0%,  100% 
+  { box-shadow: 0 0 0 0 
+    rgba(220, 30, 30, 0); }
+  50% 
+  { box-shadow: 0 0 14px 3px
+     rgba(220, 30, 30, 0.28); }
 }
-
-/* Original text styles with responsive sizing fallback */
-.strong, .strong2 {
-  font-size: clamp(3rem, 10vw, 5rem);
-  font-weight: 700;
-  text-align: center;
-  margin-top: 150px;
-  color: #fff;
+button{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #E6A62B;
+  border: 2px solid white;
+  margin-left: 92%;
+  transition: 1s ease-in;
 }
-
-.strong2 {
-  margin-top: 10px;
-}
-
-.arrow {
-  display: block;
-  margin: 20px auto;
-  background: none;
-  border: none;
+.arrow{
   color: white;
-  font-size: 2.5rem;
-  cursor: pointer;
+  font-size: 20px;
+  font-weight: bolder;
+  
 }
-
+.strong{
+ font-family: 'Edu NSW ACT Cursive', cursive;
+  color: orange;
+  font-size: 130px;
+  font-weight: 700;
+  text-align: start;
+  margin-top:5%;
+  margin-left: 5%;
+  
+}
+.strong2{
+  font-family: 'Edu NSW ACT Cursive', cursive;
+  color: orange;
+  font-size: 120px;
+  font-weight: 600;
+  text-align: end;
+  margin-right: 50px;
+  margin-top: 10%;
+  line-height: 1.15;
+}
 #intro {
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
-  text-align: center;
-  margin-top: 20px;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Bahnschrift', sans-serif;
+  font-size: 25px;
+  margin-left: 100px;
+  margin-top: -20px;
+  transition: 1s ease-in;
 }
 
-/* Mobile Breakpoint for Navigation Stack Only */
+/* ===== RESPONSIVE: index page ===== */
 @media (max-width: 768px) {
   .header {
-    padding: 0.8rem 5%;
+    padding: 0.5rem 5%;
+    flex-wrap: wrap;
+    gap: 8px;
   }
+
+  .navbar {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
   .navbar a {
-    padding: 6px 12px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 7px 14px;
+  }
+
+  .strong {
+    font-size: 70px;
+    margin-top: 80px;
+    margin-left: 3%;
+  }
+
+  .strong2 {
+    font-size: 60px;
+    margin-right: 20px;
+    margin-top: 5%;
+  }
+
+  button {
+    margin-left: 80%;
+  }
+
+  #intro {
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .header {
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-  }
   .strong {
-    margin-top: 100px;
+    font-size: 50px;
+    margin-top: 90px;
+  }
+
+  .strong2 {
+    font-size: 44px;
+  }
+
+  .navbar a {
+    font-size: 0.78rem;
+    padding: 6px 10px;
+  }
+
+  #intro {
+    font-size: 14px;
+    margin-left: 12px;
+  }
+
+  button {
+    margin-left: 70%;
   }
 }
