@@ -11,9 +11,8 @@ body {
   font-family: 'Century Gothic', sans-serif;
   color: #fff;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment:fixed
 }
-
 .header {
   position: sticky;
   top: 0;
@@ -36,104 +35,174 @@ body {
   color: #fff;
   text-decoration: none;
   margin-left: 25px;
-  font-family: 'poppins';
+  font-family:'poppins';
 }
-
-.navbar a:hover {
+.navbar a:hover{
+  content: '';
   color: orange;
   transition: 1s;
   border: 1px solid whitesmoke;
   border-radius: 10px;
-  background: transparent;
+  background-color: white;
+  padding: 6px;
+
+
 }
 
-.tips {
+.para{
   color: white;
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: 30px;
+  font-size: 15px;
+  font-weight: 900;
+  font-family:"Playwrite GB S", cursive;
+  text-align:end;
+  position: fixed;
+  top: 400px;       /* below the tips text */
+  right: 40px;
+  z-index: 99;
 }
+.para::selection{
+  color: red;
+  font-size: 30px;
+  background-color: black;
 
-.para {
-  color: white;
-  font-size: 1.15rem;
-  text-align: center;
-  margin-top: 20px;
-  padding: 0 15px;
 }
+.para:hover{
+  content: '';
+  color: rgb(255, 123, 0);
+  font-size: 20px;
+  transition: 1s ease-in-out;
+  line-height: 2;
+}
+.tips{
+  font-size: 80px;
+  font-weight: bold;
+font-family: "Edu NSW ACT Cursive", cursive;
+  text-align: right;
+  position: fixed;
+  top: 180px;        /* just below the header */
+  right: 60px;
+  z-index: 99;
+}
+.tips:hover{
+  content: '';
+  color: orange;  
+  transition: 0.5s ;
 
-/* Flex-Grid Container allows cards to fit nicely on smaller workspaces */
+}
 .container {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 1rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 50px;
-  padding: 0 20px 50px 20px;
+  flex-direction: column;
+  gap: 10rem;
+  margin: 0 auto 4rem;
+  margin-top: 10%;
 }
-
+@keyframes appear{
+  from { opacity: 0;
+    scale: 0.5}
+  to { opacity: 1;
+    scale: 1;
+    }
+}
+#card1,
+#card2,
+#card3 {
+  display: none;
+}
 .book-scene {
-  width: 280px;
+  perspective: 1200px;
+  width: 100%;
   height: 400px;
-  perspective: 1000px;
+   animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 50%;
 }
 
 .book {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
 }
-
-.pages, .cover {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  padding: 30px;
-  border-radius: 15px;
-  backface-visibility: hidden;
-}
-
 .pages {
-  background: #fff;
-  color: #333;
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+  background: #f5f0e8;
+  color: #111;
+  z-index: 1;
 }
 
 .pages h2 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  color: #222;
 }
 
 .pages p {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
 }
 
+/* Close button on pages side */
 .close-label {
-  align-self: flex-end;
-  color: #ff9e01;
-  font-weight: bold;
+  display: inline-block;
+  margin-top: auto;
+  padding: 6px 18px;
+  border: 1.5px solid #aaa;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #666;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
+.close-label:hover {
+  background: #e0dbd0;
+}
+
+/* ── Cover (flips open) ── */
 .cover {
-  transform-origin: left center;
-  transition: transform 0.6s ease-in-out;
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  overflow: hidden;
   z-index: 2;
+  transform-origin: left center;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.4);
+  border-left: 12px solid rgba(0, 0, 0, 0.25);
 }
 
+/* Shine strip on cover */
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Open label fills the cover */
 .open-label {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
   cursor: pointer;
 }
 
@@ -155,17 +224,90 @@ body {
   color: rgba(255, 255, 255, 0.75);
 }
 
-/* Cover Colors */
-.book-scene:nth-child(1) .cover { background: linear-gradient(135deg, #1f1b12, #ff9e01); }
-.book-scene:nth-child(2) .cover { background: linear-gradient(135deg,#1f1b12, #0a7d3e); }
-.book-scene:nth-child(3) .cover { background: linear-gradient(135deg, #1f1b12, #ffeb3b); }
+/* ── Cover colours per card ── */
+.book-scene:nth-child(1) .cover {
+  background: linear-gradient(135deg, #1f1b12, #ff9e01);
+}
 
-/* Interaction Targets Rules */
-#card1:checked ~ .container .book-scene:nth-child(1) .cover { transform: rotateY(-170deg); }
-#card2:checked ~ .container .book-scene:nth-child(2) .cover { transform: rotateY(-170deg); }
-#card3:checked ~ .container .book-scene:nth-child(3) .cover { transform: rotateY(-170deg); }
+.book-scene:nth-child(2) .cover {
+  background: linear-gradient(135deg,#1f1b12, #0a7d3e);
+}
 
-@media (max-width: 600px) {
-  .header { padding: 0.8rem 5%; }
-  .navbar a { margin-left: 12px; font-size: 1rem; }
+.book-scene:nth-child(3) .cover {
+  background: linear-gradient(135deg, #1f1b12, #ffeb3b);
+}
+
+/* ── Open state: cover swings back when checkbox is checked ── */
+#card1:checked ~ .container .book-scene:nth-child(1) .cover {
+  transform: rotateY(-170deg);
+}
+
+#card2:checked ~ .container .book-scene:nth-child(2) .cover {
+  transform: rotateY(-170deg);
+}
+
+#card3:checked ~ .container .book-scene:nth-child(3) .cover {
+  transform: rotateY(-170deg);
+}
+
+/* ── Media Queries ── */
+@media (max-width: 768px) {
+  .header { padding: 0.5rem 5%; }
+  .navbar a { margin-left: 15px; font-size: 1rem; }
+  #tips { font-size: 18px; margin-top: 300px; }
+  .book-scene { height: 380px; }
+
+  .tips {
+    font-size: 50px;
+    top: 120px;
+    right: 20px;
+  }
+
+  .para {
+    font-size: 12px;
+    top: 300px;
+    right: 20px;
+    width: 160px;
+  }
+
+  .container {
+    gap: 6rem;
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar { display: flex; flex-direction: row; flex-wrap: wrap; align-items: flex-start; padding: 10px; gap: 6px; }
+  .navbar a { margin: 4px 0; font-size: 0.85rem; }
+  .header { flex-direction: column; align-items: flex-start; }
+  .book-scene { height: 350px; }
+  #tips { font-size: 16px; margin-top: 250px; }
+
+  .tips {
+    font-size: 38px;
+    top: 110px;
+    right: 10px;
+  }
+
+  .para {
+    font-size: 11px;
+    top: 270px;
+    right: 10px;
+    width: 140px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 95%;
+    margin-top: 20%;
+    gap: 4rem;
+  }
+
+  .open-label .num {
+    font-size: 3.5rem;
+  }
+
+  .open-label h2 {
+    font-size: 1.2rem;
+  }
 }
