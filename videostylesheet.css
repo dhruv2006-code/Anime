@@ -12,7 +12,6 @@ body {
   background-attachment: fixed;
   min-height: 100vh;
 }
-
 .header {
   position: sticky;
   top: 10px;
@@ -29,6 +28,13 @@ body {
   border-radius: 30px;
 }
 
+.logo {
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
 .logo img {
   max-width: 200px;
   display: block;
@@ -36,85 +42,195 @@ body {
 
 .navbar a {
   font-size: 1.15rem;
-  font-weight: 500;
   color: #fff;
   text-decoration: none;
-  margin-left: 35px;
+  margin-left: 25px;
+  transition: color 0.2s ease; 
+  font-family: 'poppins';
 }
 
 .navbar a:hover {
-  color: coral;
+  color: #aad4ff;
 }
-
 .container {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  padding-bottom: 50px;
+  display: grid;
+  grid-auto-rows: auto;        
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 120px 40px 60px;    
+  scroll-timeline: --cards block;
+  font-family: 'poppins';
+  display: absolute;
 }
-
 .video-card {
-  width: 768px;
-  max-width: 90%;
-  height: auto;
-  min-height: 250px;
-  background: rgba(255, 255, 255, 0.05);
+  width: 100%;
+  height: 600px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   backdrop-filter: blur(5px);
-  border-radius: 30px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  display: flex;
+  -webkit-backdrop-filter: blur(5px);
   overflow: hidden;
+  display: flex;               
+  position: sticky;
+  top: calc(var(--i) * 90px);
+  opacity: 1;
+  transform: none;
+  animation: cardStack linear both;
+  animation-timeline: --cards;
+  animation-range: entry 0% exit 50%;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: box-shadow 0.3s ease;
+   animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 50%;
 }
 
+.video-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+@keyframes appear{
+  from { opacity: 2;
+    scale: 0.4}
+  to { opacity: 1;
+    scale: 1;
+    }
+}
+@keyframes cardStack {
+  from { opacity: 0.6; transform: scale(0.97); }
+  to   { opacity: 1;   transform: scale(1); }
+}
 .video-card img {
-  width: 250px;
+  width: 45%;           
+  height: 100%;
   object-fit: cover;
-}
+  display: block;
+  flex-shrink: 0;
 
-.card-text {
-  color: white;
-  padding: 25px;
-  position: relative;
-  flex: 1;
 }
-
-/* Button mechanics kept intact */
-.video-btn, .video-btn2, .video-btn3 {
-  width: 60px;
-  height: 60px;
+.video-btn {
+  width:60px;
+  height:60px;
   background: rgba(255, 255, 255, 0.8);
+  margin-top: 20%;
+  margin-left: 90%;
   border-radius: 20px;
   display: grid;
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}
 
-.play, .play2, .play3 {
+}
+.play{
   width: 30px;
   height: 30px;
   margin-left: 20%;
   clip-path: polygon(100% 50%, 47% 0, 47% 100%);
-  background: linear-gradient(rgb(255, 145, 0), black);
+  background:linear-gradient(rgb(255, 145, 0),black);
   align-self: center;
   border-radius: 2px;
 }
+.video-btn2{
+  width:60px;
+  height:60px;
+  background: rgba(255, 255, 255, 0.8);
+  margin-top: 25%;
+  margin-left: 90%;
+  border-radius: 20px;
+  display: grid;
 
-/* Responsive Fix for mobile devices */
+}
+.play2{
+  width: 30px;
+  height: 30px;
+  margin-left: 20%;
+  clip-path: polygon(100% 50%, 47% 0, 47% 100%);
+  background:linear-gradient(rgb(255, 145, 0),black);
+  align-self: center;
+  border-radius: 2px;
+}
+.video-btn3{
+  width:60px;
+  height:60px;
+  background: rgba(255, 255, 255, 0.8);
+  margin-top: 25%;
+  margin-left: 90%;
+  border-radius: 20px;
+  display: grid;
+
+}
+.play3{
+  width: 30px;
+  height: 30px;
+  margin-left: 20%;
+  clip-path: polygon(100% 50%, 47% 0, 47% 100%);
+  background:linear-gradient(rgb(255, 145, 0),black);
+  align-self: center;
+  border-radius: 2px;
+}
+.card-text {
+  flex: 1;
+  padding: 30px 40px;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  margin-left: 12px;
+}
+.text{
+  font-family: 'gilroy';
+  margin-top: 20px;
+  font-size: 29px;
+}
 @media (max-width: 768px) {
-  .header { padding: 0.5rem 5%; }
-  .navbar a { margin-left: 15px; font-size: 1rem; }
-  
   .video-card {
     flex-direction: column;
+    height: auto;
   }
   .video-card img {
     width: 100%;
-    height: 200px;
+    height: 220px;
   }
   .card-text {
-    padding-bottom: 90px; /* Space for absolute button placement */
+    padding: 20px;
+    font-size: 1.1rem;
+  }
+  .text {
+    font-size: 18px;
+  }
+  .video-btn, .video-btn2, .video-btn3 {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+  .container {
+    padding: 90px 16px 40px;
+  }
+  .header {
+    padding: 0.5rem 5%;
+    top: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar a {
+    font-size: 0.85rem;
+    margin-left: 14px;
+  }
+  .logo img {
+    max-width: 140px;
+  }
+  .card-text {
+    font-size: 1rem;
+    padding: 16px;
+  }
+  .text {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+  .video-card img {
+    height: 180px;
+  }
+  .container {
+    padding: 80px 10px 30px;
+    gap: 14px;
   }
 }
