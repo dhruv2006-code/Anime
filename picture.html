@@ -10,7 +10,6 @@
 
   <header class="header">
     <a href="#" class="logo">
-      <!-- onerror fallback renders text logo if banner.png is missing -->
       <img src="banner.png" alt="Sketch Up Logo"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
       <span class="logo-text" style="display:none;">MANGA MINT</span>
@@ -25,22 +24,19 @@
   </header>
 
   <div class="banner">
+    <div class="slider-wrapper">
+      <input type="radio" name="slider" id="slide1" checked>
+      <input type="radio" name="slider" id="slide2">
+      <input type="radio" name="slider" id="slide3">
 
-    <!-- 3D rotating card ring -->
-    <div class="slider" style="--quantity: 10;">
-      <div class="item" style="--position: 1;"> <img src="aot.jpg"          alt="Attack on Titan"></div>
-      <div class="item" style="--position: 2;"> <img src="asta.jpg"         alt="Black Clover – Asta"></div>
-      <div class="item" style="--position: 3;"> <img src="bleach.jpg"       alt="Bleach"></div>
-      <div class="item" style="--position: 4;"> <img src="bluelock.jpg"     alt="Blue Lock"></div>
-      <div class="item" style="--position: 5;"> <img src="chainsaw.jpg"     alt="Chainsaw Man"></div>
-      <div class="item" style="--position: 6;"> <img src="devil.jpg"        alt="Devil"></div>
-      <div class="item" style="--position: 7;"> <img src="gojo.jpg"         alt="Gojo"></div>
-      <div class="item" style="--position: 8;"> <img src="itadori Yuji.jpg" alt="Itadori Yuji"></div>
-      <div class="item" style="--position: 9;"> <img src="kaiju.jpg"        alt="Kaiju No. 8"></div>
-      <div class="item" style="--position: 10;"><img src="tanjiro.jpg"      alt="Tanjiro"></div>
+      <div class="slider-container">
+        <label for="slide1" class="slide" id="img1"><img src="aot.jpg" alt="AOT"></label>
+        <label for="slide2" class="slide" id="img2"><img src="bluelock.jpg" alt="Blue Lock"></label>
+        <label for="slide3" class="slide" id="img3"><img src="Itadori Yuji.jpg" alt="JJK"></label>
+      </div>
     </div>
-    <div class="content">
 
+    <div class="content">
       <div class="author">
         <h2>MANGA MINT</h2>
         <p><b>anime sketching</b></p>
@@ -48,7 +44,6 @@
       </div>
       <div class="model" role="presentation" aria-hidden="true"></div>
     </div>
-
   </div>
 
 </body>
